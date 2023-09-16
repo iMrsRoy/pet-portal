@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* styles.css */
+
+body {
+    /* Set the background image URL */
+    background-image: url('https://puppylovenv.com/media/filer_public/6f/90/6f9077be-2d0f-441b-8ca5-2f592ae20788/puppy-love-logo-color.png');
+    
+    /* Background image properties */
+    background-size: cover; /* Cover the entire element */
+    background-position: center; /* Center the image */
+    
+    /* Optional: Add some styling to the body */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: rgb(6, 6, 6); /* Text color */
+}
+
+
+/* Define a class for the button with image */
+.image-button {
+    /*background-color: #3498db; https://www.clipartmax.com/png/middle/475-4758568_img-show-your-puppy-love-dog-print.png Button background color */
+    border: none; /* Remove button border */
+    color: #b40009c1; /* Text color */
+    padding: 20px 20px; /* Padding around the text */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: background-color 0.5s ease; /* Smooth background color transition on hover */
+
+    /* Set the background image */
+    background-image: url('https://t4.ftcdn.net/jpg/01/24/44/09/360_F_124440948_44PLupxoTzvsvQjlprrGEivaxziORzIL.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* Adjust the image size to cover the button */
+}
+
+
