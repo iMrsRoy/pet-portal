@@ -1,26 +1,29 @@
-// Initialize the map
-function initMap() {
-    // Create a map centered on New York City
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 40.785091, lng: -73.968285 }, // New York City coordinates
-        zoom: 14 // Adjust the zoom level as needed
-    });
+// const position = { lat: 40.785091, lng: -73.968285 }; // New York City coordinates
 
-    // Create a Places Service object
-    var placesService = new google.maps.places.PlacesService(map);
+// Initialize and add the map
+let map;
 
-    // Define a request for nearby dog parks
-    var request = {
-        location: map.getCenter(),
-        radius: 5000, // Search radius in meters
-        keyword: 'dog park' // Keyword to search for dog parks
-    };
+async function initMap() {
+  // The location of Uluru
+  const position = { lat: 40.785091, lng: -73.968285 };
+  // Request needed libraries.
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-    // Perform the nearby search
-    placesService.nearbySearch(request, function (results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            // Handle the list of nearby dog parks (results)
-            // You can display this information on the map or in a list
-        }
-    });
+  // The map, centered at Uluru
+  map = new Map(document.getElementById("map"), {
+    zoom: 20,
+    center: position,
+    mapId: "DEMO_MAP_ID",
+  });
+
+  // The marker, positioned at Uluru
+  const marker = new AdvancedMarkerElement({
+    map: map,
+    position: position,
+    title: "NYC",
+  });
 }
+
+initMap();

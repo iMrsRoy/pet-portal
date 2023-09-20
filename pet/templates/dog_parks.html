@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- need to move head to ba-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
     <title>Find Dog Parks</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLEMAPS_KEY }}&libraries=places"></script>
 
+    <!--new code below -->
+    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "{{GOOGLEMAPS_KEY}}"});</script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <script type="module" src="/static/maps.js"></script>
 </head>
+<!-- NEED TO APP NAV BAR PARK, PLAY, REVIEW , v: "beta"-->
+
 <body>
     <h1>Welcome, {{ petname }}!</h1>
     <h1>Find Dog Parks Near Zip Code</h1>
@@ -19,50 +28,20 @@
         <input type="text" id="zip_code" name="zip_code" required>
         <button type="submit">Search</button>
     </form>
+
+
+<!-- new code below demo-->
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+
     <div id="map"></div>
     <script src="{{ url_for('static', filename='maps.js') }}"></script>
 
     <div id="googlemaps" style="width: 100%; height: 500px;"></div>
+    <!-- prettier-ignore -->
 
-    {% if dog_parks %}
-    <h2>Nearby Dog Parks:</h2>
-    <ul>
-        {% for park in dog_parks %}
-        <li>{{ park.name }} ({{ park.distance }} miles away)</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
     
-    <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('googlemaps'), {
-                center: { lat: 0, lng: 0 }, // Set the initial center of the map
-                zoom: 5, // Set the initial zoom level
-            });
     
-            var dogParks = {{ dog_parks | tojson | safe }}; // Injected from Flask template
-            var infowindow = new google.maps.InfoWindow();
-    
-            for (var i = 0; i < dogParks.length; i++) {
-                var park = dogParks[i];
-                var marker = new google.maps.Marker({
-                    position: { lat: park.latitude, lng: park.longitude },
-                    map: map,
-                    title: park.name,
-                });
-    
-                google.maps.event.addListener(marker, 'click', (function(marker, park) {
-                    return function() {
-                        infowindow.setContent('<h3>' + park.name + '</h3><p>Distance: ' + park.distance + ' miles</p>');
-                        infowindow.open(map, marker);
-                    }
-                })(marker, park));
-            }
-        }
-    
-        // Call the initMap function when the page loads
-        google.maps.event.addDomListener(window, 'load', initMap);
-    </script>
     
 </body>
 </html>

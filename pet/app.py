@@ -1,4 +1,4 @@
-import os
+import os, crud
 from flask import Flask, render_template, request, redirect, url_for, session
 # from flask_sqlalchemy import SQLAlchemy
 from model import db, User, connect_to_db, DogPark
@@ -19,7 +19,7 @@ def login():
         user = User.query.filter_by(email=email, password=password).first()
         if user:
             session['user_id'] = user.id  # Store user ID in the session
-            return render_template(url_for('dog_parks.html)'))  
+            return redirect(url_for('dog_parks'))  
         # # Redirect to the welcome route
         else:
         #     # Handle invalid credentials
@@ -40,17 +40,20 @@ def register():
     return render_template('register.html')
 
 
-
-
-
 @app.route('/dog_parks', methods=['POST', 'GET'])
 def dog_parks():
     if request.method == 'POST':
         print("HELLOOOOO")
         return redirect(url_for('dog_parks'))
-    # Fetch the user's pet name from the database
-    petname = db.current_user.petname
-    return render_template('dog_parks.html', petname=petname, google_maps_api_key=google_maps_api_key)
+    # Fetch the user's by using session
+    user_id = session.get('user_id')
+    if user_id:
+        user = crud.get_user_by_id(user_id)
+        petname = user.petname
+        return render_template('dog_parks.html', petname=petname, google_maps_api_key=google_maps_api_key)
+    else:
+        return redirect(url_for('register'))
+    
 
 
 
