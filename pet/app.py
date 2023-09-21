@@ -43,7 +43,7 @@ def register():
 @app.route('/dog_parks', methods=['POST', 'GET'])
 def dog_parks():
     if request.method == 'POST':
-        print("HELLOOOOO")
+        #print("HELLOOOOO")
         return redirect(url_for('dog_parks'))
     # Fetch the user's by using session
     user_id = session.get('user_id')
@@ -55,7 +55,29 @@ def dog_parks():
         return redirect(url_for('register'))
     
 
-
+@app.route('/dog_movies', methods=['POST', 'GET'])
+def dog_movies():
+        if request.method == 'POST':
+            return redirect(url_for('dog_movies'))
+        
+        user_id = session.get('user_id')
+        if user_id:
+            user = crud.get_user_by_id(user_id)
+            petname = user.petname
+        else:
+            return render_template('dog_movies.html', petname=petname)
+    
+@app.route('/dog_games', methods=['POST', 'GET'])
+def dog_games():
+        if request.method == 'POST':
+            return redirect(url_for('dog_games'))
+        
+        user_id = session.get('user_id')
+        if user_id:
+            user = crud.get_user_by_id(user_id)
+            petname = user.petname
+        else:
+            return render_template('dog_games.html', petname=petname)
 
 
 
