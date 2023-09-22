@@ -1,4 +1,4 @@
-import os, crud
+import os, crud, random
 from flask import Flask, render_template, request, redirect, url_for, session
 # from flask_sqlalchemy import SQLAlchemy
 from model import db, User, connect_to_db, DogPark
@@ -66,16 +66,75 @@ def dog_movies():
             petname = user.petname
             return render_template('dog_movies.html', petname=petname)
     
-@app.route('/dog_games', methods=['POST', 'GET'])
+# @app.route('/dog_games', methods=['POST', 'GET'])
+# def dog_games():
+#         if request.method == 'POST':
+#             return redirect(url_for('dog_games'))
+        
+#         user_id = session.get('user_id')
+#         if user_id:
+#             user = crud.get_user_by_id(user_id)
+#             petname = user.petname
+#             return render_template('dog_games.html', petname=petname)
+# Define the choices for the game
+choices = [
+    {
+        "name": "Tug-War",
+        "img": "https://www.everypaw.com/.imaging/mte/everypaw/590x330/dam/dog-breed-guides/cavapoo/cavapoo-2.jpg/jcr:content/cavapoo-2.jpg"
+    },
+    {
+        "name": "Belly-Rubs",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Lep6KiEVa6HtATMbK96Ehz8QpGYhop7lMg&usqp=CAU"
+    },
+    {
+        "name": "Feed-Treats",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbf_t_GtIRvcqZnY87jYj7Zafe-ILfO05A-ODxyAP-OocD55w7qoGCg66aO3zCgTLahLM&usqp=CAU"
+    }
+]
+
+# Function to generate the computer's choice
+def generate_computer_choice():
+    return random.choice(choices)
+
+# Function to determine the game result
+def determine_winner(user_choice, computer_choice):
+    if user_choice["name"] == computer_choice["name"]:
+        return "It's a tie!"
+    elif (
+        (user_choice["name"] == "Tug-War" and computer_choice["name"] == "Feed-Treats") or
+        (user_choice["name"] == "Belly-Rubs" and computer_choice["name"] == "Tug-War") or
+        (user_choice["name"] == "Feed-Treats" and computer_choice["name"] == "Belly-Rubs")
+    ):
+        return "You win!"
+    else:
+        return "Computer wins!"
+
+@app.route('/dog_games', methods=['GET', 'POST'])
 def dog_games():
-        if request.method == 'POST':
-            return redirect(url_for('dog_games'))
+    if request.method == 'POST':
         
         user_id = session.get('user_id')
         if user_id:
             user = crud.get_user_by_id(user_id)
             petname = user.petname
             return render_template('dog_games.html', petname=petname)
+        # Handle the game logic here based on user's choice
+        user_choice_name = request.form.get('user_choice')
+        user_choice = next((c for c in choices if c["name"] == user_choice_name), None)
+        computer_choice = generate_computer_choice()
+
+        # Determine the game result based on user_choice and computer_choice
+        game_result = determine_winner(user_choice, computer_choice)
+
+        # Pass the choices list to the template context
+        return render_template('dog_games.html', game_result=game_result, choices=choices)
+
+    # Pass the choices list to the template context
+    return render_template('dog_games.html', choices=choices)
+
+
+
+# For add more routes and logic to support my code goes
 
 
 

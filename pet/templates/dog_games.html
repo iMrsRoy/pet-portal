@@ -1,62 +1,164 @@
 <!DOCTYPE html>
-{% extends 'base.html' %}
-
-{% block head %}
-  <link rel="stylesheet" href="/static/styles.css">
-
-{% endblock %}
-
-{% block body %}
-  <nav>
+  {% extends 'base.html' %}
   
-    <section id="links-left">
-    
-    <button id="park">
-        <a href="/dog_parks">WalkTime</a>
-      </button>
-      
-    <button id="movies">
-      <a href="/dog_movies">MovieTime</a>
-      </button>
-
-      <button id="play">
-      <a href="/dog_games">PlayTime</a>
-      </button>
-
-      <button id="Logout">
-        <a href="/">Logout</a>
-      </button>
-
-    </section>
-
-    
-
-  <link rel="stylesheet" type="text/css" href="/static/style.css" />
-  <script type="module" src="/static/maps.js"></script>
-
-  <div id="game-container">
-    <h1>Tug-War, Belly-Rubs, Feed-Treats Dog version of Rock Paper S Game</h1>
-    <div id="result-message"></div>
-    <div id="user-choice">
-      <h2>Your Choice:</h2>
-      <button id="tug-war" class="square-button"> </button>
-        <img src="https://www.everypaw.com/.imaging/mte/everypaw/590x330/dam/dog-breed-guides/cavapoo/cavapoo-2.jpg/jcr:content/cavapoo-2.jpg" alt="Tug-War"> Tug-War 
-      <button id="belly-rubs" class="square-button">Belly-Rubs
-      </button>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Lep6KiEVa6HtATMbK96Ehz8QpGYhop7lMg&usqp=CAU" alt="Belly-Rubs"> 
-      <button id="feed-treats" class="square-button"> Feed-Treats
-      </button>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbf_t_GtIRvcqZnY87jYj7Zafe-ILfO05A-ODxyAP-OocD55w7qoGCg66aO3zCgTLahLM&usqp=CAU" alt="Feed-Treats">
-    </div>
-    
-    <div id="computer-choice">
-      <h2>Computer's Choice:</h2>
-      <p id="computer-selected"></p>
-    </div>
-    <button id="play-button">
-      <img src="https://centralparkpuppies.com/wp-content/themes/central-park-puppies-child/img/png/health-and-safety.png"> Play </button>
-  </div>
+  {% block head %}
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  {% endblock %}
   
-{% endblock %}
+  {% block body %}
+  <h1>Welcome, {{ petname }}!</h1>
+    <nav>
+      <section id="links-left">
+        <button id="park">
+          <a href="/dog_parks">WalkTime</a>
+        </button>
+        <button id="movies">
+          <a href="/dog_movies">MovieTime</a>
+        </button>
+        <button id="play">
+          <a href="/dog_games">PlayTime</a>
+        </button>
+        <button id="Logout">
+          <a href="/">Logout</a>
+        </button>
+      </section>
+    </nav>
+    <div id="game-container">
+      <h1>Tug-War, Belly-Rubs, Feed-Treats Dog Version of Rock Paper Scissors Game</h1>
+    
+      <button id="play-button" class="square-button">
+        Paw Here Play
+        <a href="#"><img src="https://cdn.vectorstock.com/i/preview-1x/91/75/dog-paw-on-red-heart-conceptual-image-vector-23639175.jpg" style="width: 200px; height: 200px;"></a>
+      </button>
+  
+      <div id="user-choice">
+        <h2>Your Choice:</h2>
+        <button class="square-button user-choice tug-war">
+          <a href="#"><img src="{{ choices[0].img }}" alt="{{ choices[0].name }}" style="width: 200px; height: 200px;"> Tug-War</a>
+        </button>
+        <button class="square-button user-choice belly-rubs">
+          <a href="#"><img src="{{ choices[1].img }}" alt="{{ choices[1].name }}" style="width: 200px; height: 200px;"> Belly-Rubs</a>
+        </button>
+        <button class="square-button user-choice feed-treats">
+          <a href="#"><img src="{{ choices[2].img }}" alt="{{ choices[2].name }}" style="width: 200px; height: 200px;"> Feed-Treats</a>
+        </button>
+      </div>
+  
+      <div id="computer-choice">
+        <h2>Computer's Choice:</h2>
+        <button class="square-button computer-choice">
+          <a href="#"><img src="" alt="" style="width: 200px; height: 200px;"> </a>
+        </button>
+      </div>
+      <!-- Add the result message div here -->
+      <div id="result-message"></div>
+    </div>
+  
+  
+    <!--Dog game js starts here-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      const choices = {{ choices|tojson|safe }};
+      const resultMessage = document.getElementById("result-message");
+      const userChoiceButtons = document.querySelectorAll(".user-choice");
+      const computerChoiceButton = document.querySelector(".computer-choice");
+  
+      userChoiceButtons.forEach((button) => {
+        button.addEventListener("click", () => makeChoice("user", button));
+      });
+  
+      function makeChoice(player, button) {
+        // Enable the play button
+        document.getElementById("play-button").disabled = false;
+  
+        // Disable other user choices
+        userChoiceButtons.forEach((userButton) => {
+          userButton.disabled = true;
+        });
+  
+        // Highlight the selected user choice (you can add a CSS class to highlight it)
+        userChoiceButtons.forEach((userButton) => {
+          userButton.classList.remove("selected");
+        });
+  
+        button.classList.add("selected");
+      }
+  
+      function getRandomChoice() {
+        const randomIndex = Math.floor(Math.random() * choices.length);
+        return choices[randomIndex];
+      }
+  
+      function determineWinner(userChoice, computerChoice) {
+        if (userChoice.name === computerChoice.name) {
+          const playAgain = confirm("It's a tie! Do you want to play again?");
+          if (playAgain) {
+            resetGame();
+          } else {
+            // Handle what happens when the user doesn't want to play again
+            resultMessage.textContent = "Game Over - It's a tie!";
+          }
+        } else if (
+          (userChoice.name === "Tug-War" && computerChoice.name === "Feed-Treats") ||
+          (userChoice.name === "Belly-Rubs" && computerChoice.name === "Tug-War") ||
+          (userChoice.name === "Feed-Treats" && computerChoice.name === "Belly-Rubs")
+        ) {
+          resultMessage.textContent = "You win!";
+        } else {
+          resultMessage.textContent = "Computer wins!";
+        }
+      }
+  
+      function resetGame() {
+        // Clear the result message
+        resultMessage.textContent = "";
+  
+        // Enable user choices
+        userChoiceButtons.forEach((button) => {
+          button.disabled = false;
+        });
+  
+        // Disable the play button
+        document.getElementById("play-button").disabled = true;
+  
+        // Reset computer choice
+        computerChoiceButton.querySelector("img").src = "";
+        computerChoiceButton.querySelector("img").alt = "";
+      }
+  
+      function playGame() {
+        const userChoiceButton = document.querySelector(".user-choice.selected");
+        const userChoice = choices.find((choice) => choice.name === userChoiceButton.textContent);
+        const computerChoice = getRandomChoice();
+  
+        // Enable user choices
+        userChoiceButtons.forEach((button) => {
+          button.disabled = false;
+        });
+  
+        // Disable the play button
+        document.getElementById("play-button").disabled = true;
+  
+        // Update the computer's choice button
+        const computerChoiceImg = computerChoiceButton.querySelector("img");
+        computerChoiceImg.src = computerChoice.img;
+        computerChoiceImg.alt = computerChoice.name;
+  
+        // Delay showing the result
+        setTimeout(() => {
+          // Enable the play button
+          document.getElementById("play-button").disabled = false;
+  
+          determineWinner(userChoice, computerChoice);
+        }, 1000); // Adjust the delay as needed
+      }
+  
+      document.getElementById("play-button").addEventListener("click", playGame);
+    </script>
+  
+  {% endblock body %}
+  </body>
+  </html>
 
-
+ 

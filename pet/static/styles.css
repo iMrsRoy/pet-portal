@@ -23,11 +23,11 @@ body {
 
 
 /* Define a class for the button with image */
-.image-button {
+.login-button {
     /*background-color: #3498db; https://www.clipartmax.com/png/middle/475-4758568_img-show-your-puppy-love-dog-print.png Button background color */
     border: none; /* Remove button border */
-    color: #b40009c1; /* Text color */
-    padding: 20px 20px; /* Padding around the text */
+    color: #040000c1; /* Text color */
+    padding: 40px 20px; /* Padding around the text */
     border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Show pointer cursor on hover */
     transition: background-color 0.5s ease; /* Smooth background color transition on hover */
@@ -108,11 +108,33 @@ body {
 }
 
 /* Add this CSS to your stylesheet */
-.square-button {
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  margin: 5px; /* Optional: Add margin between buttons */
-  background-color: transparent; /* Optional: Remove the default button background */
-  border: none; /* Optional: Remove the default button border */
+
+.image-button {
+  /* Set the custom marker icon as the background image */
+  background-image: url('/static/paw.jpeg'); 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; 
+  width: 40px; 
+  height: 40px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .square-button {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+.selected {
+  border: 2px solid rgb(255, 0, 0); 
+}
+.choice-container {
+  width: 200px;
+  height: 200px;
+  margin: 100px; /* Adjust the margin for spacing */
 }
