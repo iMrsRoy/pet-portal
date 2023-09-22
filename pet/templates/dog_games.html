@@ -28,46 +28,35 @@
       </button>
 
     </section>
-<!-- 
-    <section id="links-right">
-      <a href="/">home</a>
-    </section> -->
-  </nav>
-
-
-<body>
-    <h1>Welcome, {{ petname }}!</h1>
-    <h2>Here are the NYC Dog Park Maps</h2>
-    <!--h1>Find Dog Parks Near Zip Code</h1>
-    <form method="POST">
-        <label for="zip_code">Enter Zip Code:</label>
-        <input type="text" id="zip_code" name="zip_code" required>
-        <button type="submit">Search</button>
-    </form-->
-
-
-    <div id="map"></div>
-    <script src="{{ url_for('static', filename='maps.js') }}"></script>
-
-    <div id="googlemaps" style="width: 100%; height: 500px;"></div>
-    <!-- prettier-ignore -->
 
     
-    
-    
-</body>
-
-  <title>Find Dog Parks</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLEMAPS_KEY }}&libraries=places"></script>
-
-  <!--new code below -->
-  <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-      ({key: "{{GOOGLEMAPS_KEY}}"});</script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
   <link rel="stylesheet" type="text/css" href="/static/style.css" />
   <script type="module" src="/static/maps.js"></script>
 
+  <div id="game-container">
+    <h1>Tug-War, Belly-Rubs, Feed-Treats Dog version of Rock Paper S Game</h1>
+    <div id="result-message"></div>
+    <div id="user-choice">
+      <h2>Your Choice:</h2>
+      <button id="tug-war" class="square-button"> </button>
+        <img src="https://www.everypaw.com/.imaging/mte/everypaw/590x330/dam/dog-breed-guides/cavapoo/cavapoo-2.jpg/jcr:content/cavapoo-2.jpg" alt="Tug-War"> Tug-War 
+      <button id="belly-rubs" class="square-button">Belly-Rubs
+      </button>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0Lep6KiEVa6HtATMbK96Ehz8QpGYhop7lMg&usqp=CAU" alt="Belly-Rubs"> 
+      <button id="feed-treats" class="square-button"> Feed-Treats
+      </button>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbf_t_GtIRvcqZnY87jYj7Zafe-ILfO05A-ODxyAP-OocD55w7qoGCg66aO3zCgTLahLM&usqp=CAU" alt="Feed-Treats">
+    </div>
+    
+    <div id="computer-choice">
+      <h2>Computer's Choice:</h2>
+      <p id="computer-selected"></p>
+    </div>
+    <button id="play-button">
+      <img src="https://centralparkpuppies.com/wp-content/themes/central-park-puppies-child/img/png/health-and-safety.png"> Play </button>
+  </div>
+  
 {% endblock %}
 
 

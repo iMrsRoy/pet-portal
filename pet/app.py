@@ -58,13 +58,12 @@ def dog_parks():
 @app.route('/dog_movies', methods=['POST', 'GET'])
 def dog_movies():
         if request.method == 'POST':
-            return redirect(url_for('dog_movies'))
+            return redirect(url_for('dog_games'))
         
         user_id = session.get('user_id')
         if user_id:
             user = crud.get_user_by_id(user_id)
             petname = user.petname
-        else:
             return render_template('dog_movies.html', petname=petname)
     
 @app.route('/dog_games', methods=['POST', 'GET'])
@@ -76,7 +75,6 @@ def dog_games():
         if user_id:
             user = crud.get_user_by_id(user_id)
             petname = user.petname
-        else:
             return render_template('dog_games.html', petname=petname)
 
 

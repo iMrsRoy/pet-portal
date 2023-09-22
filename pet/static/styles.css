@@ -47,6 +47,7 @@ body {
  */
  #map {
     height: 100%;
+    
   }
   
   /* 
@@ -58,3 +59,60 @@ body {
     margin: 0;
     padding: 0;
   }
+  /* paw.css */
+
+/* Define a class for the button with image */
+.nav {
+  /* Set the custom marker icon as the background image */
+  background-image: url('/static/paw.jpeg'); 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; 
+  width: 40px; 
+  height: 40px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Style for the movie container */
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Style for each movie card */
+.movie-card {
+  width: 300px;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.movie-card h2 {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.movie-card p {
+  margin-top: 5px;
+}
+
+/* Add this CSS to your stylesheet */
+.square-button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 5px; /* Optional: Add margin between buttons */
+  background-color: transparent; /* Optional: Remove the default button background */
+  border: none; /* Optional: Remove the default button border */
+}

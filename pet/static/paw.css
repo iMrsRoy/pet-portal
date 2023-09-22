@@ -1,0 +1,15 @@
+/* paw.css */
+
+/* Define a class for the button with image */
+.image-button {
+  /* Set the custom marker icon as the background image */
+  background-image: url('/static/paw.jpeg'); 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; 
+  width: 40px; 
+  height: 40px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,73 +1,106 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
 
 {% block head %}
   <link rel="stylesheet" href="/static/styles.css">
-
+  <link rel="stylesheet" href="/static/paw.css">
+  
+  <script src="/static/movies.js"></script>
 {% endblock %}
 
 {% block body %}
-  <nav>
-    
+
+<nav>
     <section id="links-left">
-    
-    <button id="park">
-        <a href="/dog_parks">WalkTime</a>
-      </button>
-      
-    <button id="movies">
-        MovieTime
-      </button>
-
-      <button id="play">
-        PlayTime
-      </button>
-
-      <button id="Logout">
-        <a href="/">Logout</a>
-      </button>
-
+        <button id="park">
+            <a href="/dog_parks">WalkTime</a>
+        </button>
+        <button id="movies">
+            <a href="/dog_movies">MovieTime</a>
+        </button>
+        <button id="play">
+            <a href="/dog_games">PlayTime</a>
+        </button>
+        <button id="Logout">
+            <a href="/">Logout</a>
+        </button>
     </section>
-<!-- 
-    <section id="links-right">
-      <a href="/">home</a>
-    </section> -->
-  </nav>
-
+</nav>
 
 <body>
     <h1>Welcome, {{ petname }}!</h1>
     <h2>Here are the NYC Dog Park Maps</h2>
-    <!--h1>Find Dog Parks Near Zip Code</h1>
-    <form method="POST">
-        <label for="zip_code">Enter Zip Code:</label>
-        <input type="text" id="zip_code" name="zip_code" required>
-        <button type="submit">Search</button>
-    </form-->
 
-
-    <div id="map"></div>
-    <script src="{{ url_for('static', filename='maps.js') }}"></script>
-
-    <div id="googlemaps" style="width: 100%; height: 500px;"></div>
-    <!-- prettier-ignore -->
-
+    <h1>Dog Movies</h1>
     
-    
-    
+    <ul id="movie-list">
+        {% for movie in movies %}
+        <li>
+            <h2>{{ movie.title }}</h2>
+            <p>Rating: {{ movie.movie_rating }}</p>
+            <p>Comments: {{ movie.comments }}</p>
+            
+            <img src="{{ movie.poster }}" alt="{{ movie.title }} Poster">
+        </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+      <li>
+        <h2>Marley & Me</h2>
+        <img src="https://www.themoviedb.org/t/p/w500/vMNqPN7EdRjqHnccCqtEkC61r3y.jpg" alt="Marley & Me poster">
+        <p>Rating: 4</p>
+        <p>Comments: A funny and touching story about a mischievous dog.</p>
+      </li>
+      <li>
+        <h2>A Dog's Purpose</h2>
+        <img src="https://img.clickviewapp.com/v2/thumbnails/odxvnn?size=Medium" alt="A Dog's Purpose poster">
+        <p>Rating: 4</p>
+        <p>Comments: Heartwarming film about the journey of a dog.</p>
+      </li>
+      <li>
+        <h2>The Secret Life of Pets</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f0/The_Secret_Life_of_Pets_poster.jpg/220px-The_Secret_Life_of_Pets_poster.jpg" alt="The Secret Life of Pets poster">
+        <p>Rating: 3</p>
+        <p>Comments: What do pets do when their owners are away?</p>
+      </li>
+      <li>
+        <h2>Beethoven</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Beethoven_(1992_film_poster).jpg/220px-Beethoven_(1992_film_poster).jpg" alt="Beethoven poster">
+        <p>Rating: 4</p>
+        <p>Comments: A family comedy about a giant St. Bernard.</p>
+      </li>
+      <li>
+        <h2>101 Dalmatians</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/101_Dalmatians_poster.jpg/220px-101_Dalmatians_poster.jpg" alt="101 Dalmatians poster">
+        <p>Rating: 3</p>
+        <p>Comments: A classic Disney animated film about a family of dalmatians who are kidnapped by Cruella de Vil.</p>
+      </li>
+      <li>
+        <h2>Lady and the Tramp</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Lady_and_the_Tramp_1955_poster.jpg/220px-Lady_and_the_Tramp_1955_poster.jpg" alt="Lady and the Tramp poster">
+        <p>Rating: 4</p>
+        <p>Comments: A classic Disney animated film about a cocker spaniel and a stray dog who fall in love.</p>
+      </li>
+      <li>
+        <h2>Bolt</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/Bolt_poster.jpg/220px-Bolt_poster.jpg" alt="Bolt poster">
+        <p>Rating: 3</p>
+        <p>Comments: A Disney animated film about a dog who believes he has superpowers.</p>
+      </li>
+      <li>
+        <h2>The Lego Movie 2: The Second Part</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/The_LEGO_Movie_2:_The_Second_Part_poster.jpg/220px-The_LEGO_Movie_2:_The_Second_Part_poster.jpg" alt="The Lego Movie 2: The Second Part poster">
+        <p>Rating: 3</p>
+        <p>Comments: A Lego animated film featuring a dog named Puppy Unikitty.</p>
+      </li>
+      <li>
+        <h2>Isle of Dogs</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Isle_of_Dogs_2018_poster.jpg/220px-Isle_of_Dogs_2018_poster.jpg">
+        <p>Rating: 4</p>
+        <p>Comments: "A stop-motion animated film about a group of dogs who are exiled to an island."</p>
+      </li>
 </body>
 
-  <title>Find Dog Parks</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLEMAPS_KEY }}&libraries=places"></script>
 
-  <!--new code below -->
-  <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-      ({key: "{{GOOGLEMAPS_KEY}}"});</script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
-  <link rel="stylesheet" type="text/css" href="/static/style.css" />
-  <script type="module" src="/static/maps.js"></script>
-
-{% endblock %}
-
-
+{% endblock body %}
+</html>

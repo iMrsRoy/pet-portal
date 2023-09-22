@@ -1,0 +1,66 @@
+[
+    {
+      "title": "A Dog's Purpose",
+      "movie_rating": 4,
+      "comments": "Heartwarming film about the journey of a dog.",
+      "type": "movie",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/A_Dog%27s_Purpose_poster.jpg/220px-A_Dog%27s_Purpose_poster.jpg"
+    },
+    {
+      "title": "Marley & Me",
+      "movie_rating": 4,
+      "comments": "A funny and touching story about a mischievous dog.",
+      "type": "movie",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/5/55/Marley_Me_poster.jpg/220px-Marley_Me_poster.jpg"
+    },
+    {
+      "title": "The Secret Life of Pets",
+      "movie_rating": 3,
+      "comments": "What do pets do when their owners are away?",
+      "type": "movie",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f0/The_Secret_Life_of_Pets_poster.jpg/220px-The_Secret_Life_of_Pets_poster.jpg"
+    },
+    {
+      "title": "Beethoven",
+      "movie_rating": 4,
+      "comments": "A family comedy about a giant St. Bernard.",
+      "type": "movie",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Beethoven_(1992_film_poster).jpg/220px-Beethoven_(1992_film_poster).jpg"
+    },
+    {
+      "title": "101 Dalmatians",
+      "movie_rating": 3,
+      "comments": "A classic Disney animated film about a family of dalmatians who are kidnapped by Cruella de Vil.",
+      "type": "cartoon",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/101_Dalmatians_poster.jpg/220px-101_Dalmatians_poster.jpg"
+    },
+    {
+      "title": "Lady and the Tramp",
+      "movie_rating": 4,
+      "comments": "A classic Disney animated film about a cocker spaniel and a stray dog who fall in love.",
+      "type": "cartoon",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Lady_and_the_Tramp_1955_poster.jpg/220px-Lady_and_the_Tramp_1955_poster.jpg"
+    },
+    {
+      "title": "Bolt",
+      "movie_rating": 3,
+      "comments": "A Disney animated film about a dog who believes he has superpowers.",
+      "type": "cartoon",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/Bolt_poster.jpg/220px-Bolt_poster.jpg"
+    },
+    {
+      "title": "The Lego Movie 2: The Second Part",
+      "movie_rating": 3,
+      "comments": "A Lego animated film featuring a dog named Puppy Unikitty.",
+      "type": "cartoon",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/The_LEGO_Movie_2:_The_Second_Part_poster.jpg/220px-The_LEGO_Movie_2:_The_Second_Part_poster.jpg"
+    },
+    {
+      "title": "Isle of Dogs",
+      "movie_rating": 4,
+      "comments": "A stop-motion animated film about a group of dogs who are exiled to an island.",
+      "type": "cartoon",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d6/Isle_of_Dogs_2018_poster.jpg/220px-Isle_of_Dogs_2018_poster.jpg"
+    }
+  ]
+  
