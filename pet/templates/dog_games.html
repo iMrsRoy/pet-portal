@@ -1,164 +1,162 @@
 <!DOCTYPE html>
-  {% extends 'base.html' %}
-  
-  {% block head %}
-    <link rel="stylesheet" href="/static/styles.css">
-  </head>
-  {% endblock %}
-  
-  {% block body %}
-  <h1>Welcome, {{ petname }}!</h1>
-    <nav>
-      <section id="links-left">
-        <button id="park">
-          <a href="/dog_parks">WalkTime</a>
-        </button>
-        <button id="movies">
-          <a href="/dog_movies">MovieTime</a>
-        </button>
-        <button id="play">
-          <a href="/dog_games">PlayTime</a>
-        </button>
-        <button id="Logout">
-          <a href="/">Logout</a>
-        </button>
-      </section>
-    </nav>
-    <div id="game-container">
-      <h1>Tug-War, Belly-Rubs, Feed-Treats Dog Version of Rock Paper Scissors Game</h1>
-    
-      <button id="play-button" class="square-button">
-        Paw Here Play
-        <a href="#"><img src="https://cdn.vectorstock.com/i/preview-1x/91/75/dog-paw-on-red-heart-conceptual-image-vector-23639175.jpg" style="width: 200px; height: 200px;"></a>
+{% extends 'base.html' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+{% endblock %}
+
+{% block body %}
+<h1>Welcome, {{ petname }}! </h1>   
+ <!-- Add the result message div here -->
+  <div id="result-message"></div>
+  <nav>
+    <section id="links-left">
+      <button id="park">
+        <a href="/dog_parks">WalkTime</a>
       </button>
-  
-      <div id="user-choice">
-        <h2>Your Choice:</h2>
-        <button class="square-button user-choice tug-war">
-          <a href="#"><img src="{{ choices[0].img }}" alt="{{ choices[0].name }}" style="width: 200px; height: 200px;"> Tug-War</a>
-        </button>
-        <button class="square-button user-choice belly-rubs">
-          <a href="#"><img src="{{ choices[1].img }}" alt="{{ choices[1].name }}" style="width: 200px; height: 200px;"> Belly-Rubs</a>
-        </button>
-        <button class="square-button user-choice feed-treats">
-          <a href="#"><img src="{{ choices[2].img }}" alt="{{ choices[2].name }}" style="width: 200px; height: 200px;"> Feed-Treats</a>
-        </button>
-      </div>
-  
-      <div id="computer-choice">
-        <h2>Computer's Choice:</h2>
-        <button class="square-button computer-choice">
-          <a href="#"><img src="" alt="" style="width: 200px; height: 200px;"> </a>
-        </button>
-      </div>
-      <!-- Add the result message div here -->
-      <div id="result-message"></div>
+      <button id="movies">
+        <a href="/dog_movies">MovieTime</a>
+      </button>
+      <button id="play">
+        <a href="/dog_games">PlayTime</a>
+      </button>
+      <button id="Logout">
+        <a href="/">Logout</a>
+      </button>
+    </section>
+  </nav>
+  <div id="game-container">
+    <h1>Tug-War, Belly-Rubs, Feed-Treats Dog Version of Rock Paper Scissors Game</h1>
+
+    <button id="play-button" class="square-button">
+      Paw Here Play
+      <a href="#"><img src="https://cdn.vectorstock.com/i/preview-1x/91/75/dog-paw-on-red-heart-conceptual-image-vector-23639175.jpg" style="width: 200px; height: 200px;"></a>
+    </button>
+
+    <div id="user-choice">
+      <h2>Your Choice:</h2>
+      <button class="square-button user-choice tug-war">
+        <a href="#"><img src="{{ choices[0].img }}" alt="{{ choices[0].name }}" style="width: 200px; height: 200px;"> Tug-War</a>
+      </button>
+      <button class="square-button user-choice belly-rubs">
+        <a href="#"><img src="{{ choices[1].img }}" alt="{{ choices[1].name }}" style="width: 200px; height: 200px;"> Belly-Rubs</a>
+      </button>
+      <button class="square-button user-choice feed-treats">
+        <a href="#"><img src="{{ choices[2].img }}" alt="{{ choices[2].name }}" style="width: 200px; height: 200px;"> Feed-Treats</a>
+      </button>
     </div>
-  
-  
-    <!--Dog game js starts here-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-      const choices = {{ choices|tojson|safe }};
-      const resultMessage = document.getElementById("result-message");
-      const userChoiceButtons = document.querySelectorAll(".user-choice");
-      const computerChoiceButton = document.querySelector(".computer-choice");
-  
-      userChoiceButtons.forEach((button) => {
-        button.addEventListener("click", () => makeChoice("user", button));
+
+    <div id="computer-choice">
+      <h2>Computer's Choice:</h2>
+      <button class="square-button computer-choice">
+        <a href="#"><img src="" alt="" style="width: 200px; height: 200px;"> </a>
+      </button>
+    </div>
+
+  </div>
+
+  <!--Dog game js starts here-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const choices = {{ choices|tojson|safe }};
+    const resultMessage = document.getElementById("result-message");
+    const userChoiceButtons = document.querySelectorAll(".user-choice");
+    const computerChoiceButton = document.querySelector(".computer-choice");
+
+    userChoiceButtons.forEach((button) => {
+      button.addEventListener("click", () => makeChoice("user", button));
+    });
+
+    function makeChoice(player, button) {
+      // Enable the play button
+      document.getElementById("play-button").disabled = false;
+
+      // Disable other user choices
+      userChoiceButtons.forEach((userButton) => {
+        userButton.disabled = true;
       });
-  
-      function makeChoice(player, button) {
+
+      // Highlight the selected user choice (you can add a CSS class to highlight it)
+      userChoiceButtons.forEach((userButton) => {
+        userButton.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+    }
+
+    function getRandomChoice() {
+      const randomIndex = Math.floor(Math.random() * choices.length);
+      return choices[randomIndex];
+    }
+
+    function determineWinner(userChoice, computerChoice) {
+      if (userChoice.name === computerChoice.name) {
+        const playAgain = confirm("It's a tie! Do you want to play again?");
+        if (playAgain) {
+          resetGame();
+        } else {
+          // Handle what happens when the user doesn't want to play again
+          resultMessage.textContent = "Game Over - It's a tie!";
+        }
+      } else if (
+        (userChoice.name === "Tug-War" && computerChoice.name === "Feed-Treats") ||
+        (userChoice.name === "Belly-Rubs" && computerChoice.name === "Tug-War") ||
+        (userChoice.name === "Feed-Treats" && computerChoice.name === "Belly-Rubs")
+      ) {
+        resultMessage.textContent = "You win!";
+      } else {
+        resultMessage.textContent = "Computer wins!";
+      }
+    }
+
+    function resetGame() {
+      // Clear the result message
+      resultMessage.textContent = "";
+
+      // Enable user choices
+      userChoiceButtons.forEach((button) => {
+        button.disabled = false;
+      });
+
+      // Disable the play button
+      document.getElementById("play-button").disabled = true;
+
+      // Reset computer choice
+      computerChoiceButton.querySelector("img").src = "";
+      computerChoiceButton.querySelector("img").alt = "";
+    }
+
+    function playGame() {
+      const userChoiceButton = document.querySelector(".user-choice.selected");
+      const userChoice = choices.find((choice) => choice.name === userChoiceButton.textContent);
+      const computerChoice = getRandomChoice();
+
+      // Enable user choices
+      userChoiceButtons.forEach((button) => {
+        button.disabled = false;
+      });
+
+      // Disable the play button
+      document.getElementById("play-button").disabled = true;
+
+      // Update the computer's choice button
+      const computerChoiceImg = computerChoiceButton.querySelector("img");
+      computerChoiceImg.src = computerChoice.img;
+      computerChoiceImg.alt = computerChoice.name;
+
+      // Delay showing the result
+      setTimeout(() => {
         // Enable the play button
         document.getElementById("play-button").disabled = false;
-  
-        // Disable other user choices
-        userChoiceButtons.forEach((userButton) => {
-          userButton.disabled = true;
-        });
-  
-        // Highlight the selected user choice (you can add a CSS class to highlight it)
-        userChoiceButtons.forEach((userButton) => {
-          userButton.classList.remove("selected");
-        });
-  
-        button.classList.add("selected");
-      }
-  
-      function getRandomChoice() {
-        const randomIndex = Math.floor(Math.random() * choices.length);
-        return choices[randomIndex];
-      }
-  
-      function determineWinner(userChoice, computerChoice) {
-        if (userChoice.name === computerChoice.name) {
-          const playAgain = confirm("It's a tie! Do you want to play again?");
-          if (playAgain) {
-            resetGame();
-          } else {
-            // Handle what happens when the user doesn't want to play again
-            resultMessage.textContent = "Game Over - It's a tie!";
-          }
-        } else if (
-          (userChoice.name === "Tug-War" && computerChoice.name === "Feed-Treats") ||
-          (userChoice.name === "Belly-Rubs" && computerChoice.name === "Tug-War") ||
-          (userChoice.name === "Feed-Treats" && computerChoice.name === "Belly-Rubs")
-        ) {
-          resultMessage.textContent = "You win!";
-        } else {
-          resultMessage.textContent = "Computer wins!";
-        }
-      }
-  
-      function resetGame() {
-        // Clear the result message
-        resultMessage.textContent = "";
-  
-        // Enable user choices
-        userChoiceButtons.forEach((button) => {
-          button.disabled = false;
-        });
-  
-        // Disable the play button
-        document.getElementById("play-button").disabled = true;
-  
-        // Reset computer choice
-        computerChoiceButton.querySelector("img").src = "";
-        computerChoiceButton.querySelector("img").alt = "";
-      }
-  
-      function playGame() {
-        const userChoiceButton = document.querySelector(".user-choice.selected");
-        const userChoice = choices.find((choice) => choice.name === userChoiceButton.textContent);
-        const computerChoice = getRandomChoice();
-  
-        // Enable user choices
-        userChoiceButtons.forEach((button) => {
-          button.disabled = false;
-        });
-  
-        // Disable the play button
-        document.getElementById("play-button").disabled = true;
-  
-        // Update the computer's choice button
-        const computerChoiceImg = computerChoiceButton.querySelector("img");
-        computerChoiceImg.src = computerChoice.img;
-        computerChoiceImg.alt = computerChoice.name;
-  
-        // Delay showing the result
-        setTimeout(() => {
-          // Enable the play button
-          document.getElementById("play-button").disabled = false;
-  
-          determineWinner(userChoice, computerChoice);
-        }, 1000); // Adjust the delay as needed
-      }
-  
-      document.getElementById("play-button").addEventListener("click", playGame);
-    </script>
-  
-  {% endblock body %}
-  </body>
-  </html>
 
- 
+        determineWinner(userChoice, computerChoice);
+      }, 1000); // Adjust the delay as needed
+    }
+
+    document.getElementById("play-button").addEventListener("click", playGame);
+  </script>
+
+{% endblock body %}
+</body>
+</html>

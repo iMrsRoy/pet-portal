@@ -109,15 +109,12 @@ def determine_winner(user_choice, computer_choice):
     else:
         return "Computer wins!"
 
+from flask import render_template, request, session
+import random
+
 @app.route('/dog_games', methods=['GET', 'POST'])
 def dog_games():
     if request.method == 'POST':
-        
-        user_id = session.get('user_id')
-        if user_id:
-            user = crud.get_user_by_id(user_id)
-            petname = user.petname
-            return render_template('dog_games.html', petname=petname)
         # Handle the game logic here based on user's choice
         user_choice_name = request.form.get('user_choice')
         user_choice = next((c for c in choices if c["name"] == user_choice_name), None)
@@ -126,11 +123,21 @@ def dog_games():
         # Determine the game result based on user_choice and computer_choice
         game_result = determine_winner(user_choice, computer_choice)
 
-        # Pass the choices list to the template context
+        # Pass the choices list and game_result to the template context
         return render_template('dog_games.html', game_result=game_result, choices=choices)
 
-    # Pass the choices list to the template context
-    return render_template('dog_games.html', choices=choices)
+    # Check if the user is logged in by looking for their user_id in the session
+    user_id = session.get('user_id')
+    if user_id:
+        # If the user is logged in, retrieve their data (e.g., petname) from your data store
+        user = crud.get_user_by_id(user_id)
+        petname = user.petname
+        return render_template('dog_games.html', choices=choices, petname=petname)
+
+    # If the user is not logged in, you can handle this case as needed
+    # For example, you can redirect them to the login page or show a message
+    return render_template('login.html')  # You should replace 'login.html' with your actual login template
+
 
 
 
