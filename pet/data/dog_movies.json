@@ -1,17 +1,24 @@
 [
     {
-      "title": "A Dog's Purpose",
-      "movie_rating": 4,
-      "comments": "Heartwarming film about the journey of a dog.",
+      "title": "Puppy Love",
+      "movie_rating": 5,
+      "comments": "Heartwarming film about the journey of a 2 dog falling in love and pawrents also fall in love, its a new age movie a MUST see.",
       "type": "movie",
-      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/A_Dog%27s_Purpose_poster.jpg/220px-A_Dog%27s_Purpose_poster.jpg"
-    },
+      "poster": "https://cdn.technadu.com/wp-content/uploads/2023/08/Puppy-Love-696x392.jpg"
+    },  
     {
       "title": "Marley & Me",
       "movie_rating": 4,
       "comments": "A funny and touching story about a mischievous dog.",
       "type": "movie",
-      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/5/55/Marley_Me_poster.jpg/220px-Marley_Me_poster.jpg"
+      "poster": "https://www.themoviedb.org/t/p/w500/vMNqPN7EdRjqHnccCqtEkC61r3y.jpg"
+    },
+    {
+      "title": "A Dog's Purpose",
+      "movie_rating": 4,
+      "comments": "Heartwarming film about the journey of a dog.",
+      "type": "movie",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/A_Dog%27s_Purpose_poster.jpg/220px-A_Dog%27s_Purpose_poster.jpg"
     },
     {
       "title": "The Secret Life of Pets",

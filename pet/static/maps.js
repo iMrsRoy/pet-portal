@@ -2,6 +2,7 @@
 let map;
 
 async function initMap() {
+ console.log("Map is running")
   // Define an array of locations with their names and coordinates
   const locations = [
     {
@@ -56,18 +57,18 @@ async function initMap() {
   ];
 
   // Request needed libraries.
-
+  
   
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-  // The map, centered at NY Jones Beach coordinates
-  const mapCenter = { lat: 40.645425, lng: -73.293392 };
+  // The map, centered at NY my fav dog park coordinates         lat: 40.785091,lng: -73.968285,
+  const mapCenter = { lat: 40.785091,lng: -73.968285 };
   map = new Map(document.getElementById("map"), {
-    zoom: 9,
+    zoom: 15,
     center: mapCenter,
-    mapId: "DEMO_MAP_ID",
+    mapId: "Dogfriendly_Park_MAP_ID",
   });
 
   // Create markers for each location

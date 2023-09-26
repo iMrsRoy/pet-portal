@@ -3,72 +3,66 @@
 
 {% block head %}
   <link rel="stylesheet" href="/static/styles.css">
-  <link rel="stylesheet" href="/static/paw.css">
-
+</head>
 {% endblock %}
 
 {% block body %}
 <nav>
-  
-    <section id="links-left">
-    
+  <section id="links-left">
     <button id="park">
-        <a href="/dog_parks">WalkTime</a>
-      </button>
-      
+      <a href="/dog_parks">WalkTime</a>
+    </button>
     <button id="movies">
       <a href="/dog_movies">MovieTime</a>
-      </button>
-
-      <button id="play">
+    </button>
+    <button id="play">
       <a href="/dog_games">PlayTime</a>
-      </button>
-
-      <button id="Logout">
-        <a href="/">Logout</a>
-      </button>
-
-    </section>
-<!-- 
-    <section id="links-right">
-      <a href="/">home</a>
-    </section> -->
-  </nav>
+    </button>
+    <button id="Logout">
+      <a href="/">Logout</a>
+    </button>
+  </section>
+</nav>
 
 
-<body>
-    <h1>Welcome, {{ petname }}!</h1>
-    <h2>Here are the NYC Dog Park Maps</h2>
-    <!--h1>Find Dog Parks Near Zip Code</h1>
-    <form method="POST">
-        <label for="zip_code">Enter Zip Code:</label>
-        <input type="text" id="zip_code" name="zip_code" required>
-        <button type="submit">Search</button>
-    </form-->
+<h1>Welcome, {{ petname }}!</h1>
+<h2>Here are the NYC Dog Park Maps</h2>
+<!-- Uncomment the form for entering the ZIP code -->
+<h3>Enter the Zip Code to see the weather below</h1>
+<form method="POST">
+    <label for="zipCode">Enter Zip Code:</label>
+    <input type="text" id="zipCode" name="zipCode" required>
+    <button type="submit">Search</button>
+</form>
+<div class= "weather">
+{% if weather %}
+<p>Weather in {{ weather.City }}:</p>
+<p>Current Temperature: {{ weather["Current Temperature"] }}°F</p>
+<p>Feels Like: {{ weather["Feels Like Temperature"] }}°F</p>
+<p>Humidity: {{ weather.Humidity }}%</p>
+<p>Description: {{ weather.Description }}</p>
+<p>Sunrise: {{ weather.Sunrise }}</p>
+<p>Sunset: {{ weather.Sunset }}</p>
 
-
-    <div id="map"></div>
+{% if "Rain" in weather.Description %}
+    <p>It's raining, stay inside with your pup!</p>
+{% elif "Snow" in weather.Description %}
+    <p>It's snowing, have a cozy day indoors with your dog.</p>
+{% elif "Clouds" in weather.Description %}
+    <p>It's cloudy, a good day for a walk with your furry friend!</p>
+{% else %}
+    <p>It's a great day to go outside for a walk with your pup!</p>
+{% endif %}
+{% endif %}
+</div>
+    <div id="map">
     <script src="{{ url_for('static', filename='maps.js') }}"></script>
 
     <div id="googlemaps" style="width: 100%; height: 500px;"></div>
-    <!-- prettier-ignore -->
-
-    
-    
-    
 </body>
-
-  <title>Find Dog Parks</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLEMAPS_KEY }}&libraries=places"></script>
-
-  <!--new code below -->
-  <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-      ({key: "{{GOOGLEMAPS_KEY}}"});</script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
-  <link rel="stylesheet" type="text/css" href="/static/style.css" />
-  <script type="module" src="/static/maps.js"></script>
-
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLEMAPS_KEY }}&libraries=places&callback=initMap"></script>
+<link rel="stylesheet" type="text/css" href="/static/style.css" />
+<script type="module" src="/static/maps.js"></script>
+</div>
 {% endblock %}
-
-
+</html>

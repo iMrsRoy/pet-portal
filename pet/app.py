@@ -1,13 +1,12 @@
-import os, crud, random
 from flask import Flask, render_template, request, redirect, url_for, session
+import os, crud, random, json, requests
 # from flask_sqlalchemy import SQLAlchemy
-from model import db, User, connect_to_db, DogPark
+from model import db, User, connect_to_db
 
 
 
 app = Flask(__name__)
 app.secret_key = os.environ['SECRET_KEY']
-google_maps_api_key = os.environ.get('GOOGLEMAPS_KEY')
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -40,19 +39,58 @@ def register():
     return render_template('register.html')
 
 
+
 @app.route('/dog_parks', methods=['POST', 'GET'])
 def dog_parks():
-    if request.method == 'POST':
-        #print("HELLOOOOO")
-        return redirect(url_for('dog_parks'))
-    # Fetch the user's by using session
+    google_maps_api_key = os.environ.get('GOOGLEMAPS_KEY')
+    zipCode = os.environ.get('zipCode')
+    w_api = os.environ.get('WAPI_KEY')
+    
+    def getWeatherByZipCode(zipCode):
+        url = f"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={w_api}&units=imperial"
+        response = requests.get(url)
+    
+        if response.status_code == 200:
+            jsonWeatherData = json.loads(response.content)
+            return {
+            "City": jsonWeatherData["name"],
+            "Current Temperature": jsonWeatherData["main"]["temp"],
+            "Feels Like Temperature": jsonWeatherData["main"]["feels_like"],
+            "Humidity": jsonWeatherData["main"]["humidity"],
+            "Sunrise": jsonWeatherData['sys']['sunrise'],
+            "Sunset": jsonWeatherData['sys']['sunset'],
+            "Description": " ".join([weatherCondition["description"] for weatherCondition in jsonWeatherData["weather"]]),
+        }
+        else:
+            return None 
+        if request.method == 'POST':
+            return redirect(url_for('dog_parks'))
     user_id = session.get('user_id')
     if user_id:
         user = crud.get_user_by_id(user_id)
-        petname = user.petname
-        return render_template('dog_parks.html', petname=petname, google_maps_api_key=google_maps_api_key)
+        petname = user.petname   
+        # weather = None
+        zip_code = request.form.get('zipCode')
+        weather = getWeatherByZipCode(zip_code)
+        return render_template('dog_parks.html', petname=petname, google_maps_api_key=google_maps_api_key, weather=weather)
     else:
         return redirect(url_for('register'))
+
+
+# @app.route('/dog_parks', methods=['POST', 'GET'])
+# def dog_parks():
+#     if request.method == 'POST':
+#         #print("HELLOOOOO")
+#         return redirect(url_for('dog_parks'))
+#     # Fetch the user's by using session
+#     user_id = session.get('user_id')
+#     if user_id:
+#         user = crud.get_user_by_id(user_id)
+#         petname = user.petname
+#         print(google_maps_api_key)
+#         return render_template('dog_parks.html', petname=petname, google_maps_api_key=google_maps_api_key)
+#     else:
+#         return redirect(url_for('register'))
     
 
 @app.route('/dog_movies', methods=['POST', 'GET'])
@@ -66,17 +104,7 @@ def dog_movies():
             petname = user.petname
             return render_template('dog_movies.html', petname=petname)
     
-# @app.route('/dog_games', methods=['POST', 'GET'])
-# def dog_games():
-#         if request.method == 'POST':
-#             return redirect(url_for('dog_games'))
-        
-#         user_id = session.get('user_id')
-#         if user_id:
-#             user = crud.get_user_by_id(user_id)
-#             petname = user.petname
-#             return render_template('dog_games.html', petname=petname)
-# Define the choices for the game
+
 choices = [
     {
         "name": "Tug-War",
@@ -109,8 +137,6 @@ def determine_winner(user_choice, computer_choice):
     else:
         return "Computer wins!"
 
-from flask import render_template, request, session
-import random
 
 @app.route('/dog_games', methods=['GET', 'POST'])
 def dog_games():
@@ -133,11 +159,6 @@ def dog_games():
         user = crud.get_user_by_id(user_id)
         petname = user.petname
         return render_template('dog_games.html', choices=choices, petname=petname)
-
-    # If the user is not logged in, you can handle this case as needed
-    # For example, you can redirect them to the login page or show a message
-    return render_template('login.html')  # You should replace 'login.html' with your actual login template
-
 
 
 

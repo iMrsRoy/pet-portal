@@ -19,6 +19,7 @@ body {
     margin: 0;
     padding: 0;
     color: rgb(6, 6, 6); /* Text color */
+    
 }
 
 
@@ -45,29 +46,28 @@ body {
  * Always set the map height explicitly to define the size of the div element
  * that contains the map. 
  */
- #map {
-    height: 100%;
-    
-  }
+
+    #map {
+      height: 100%;
+    }
   
-  /* 
-   * Optional: Makes the sample page fill the window. 
-   */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  /* paw.css */
+    /* 
+    * Optional: Makes the sample page fill the window. 
+    */
+    html,
+    body {
+      height: 90%;
+      margin: 10;
+      padding: 50;
+    }
 
 /* Define a class for the button with image */
 .nav {
   /* Set the custom marker icon as the background image */
   background-image: url('/static/paw.jpeg'); 
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover; 
+  background-repeat: repeat;
+  background-position: center;
+  background-color: rgba(13, 237, 65, 0.943); 
   width: 40px; 
   height: 40px; 
   display: flex;
@@ -107,8 +107,12 @@ body {
   margin-top: 5px;
 }
 
-/* Add this CSS to your stylesheet */
-
+/* Add this CSS to your stylesheet park page */
+.weather {
+  background-color: white;
+  width: 500px;
+  margin: 10px; /* Adjust the margin for spacing */
+}
 .image-button {
   /* Set the custom marker icon as the background image */
   background-image: url('/static/paw.jpeg'); 
