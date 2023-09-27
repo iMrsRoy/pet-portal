@@ -28,7 +28,7 @@
 <h1>Welcome, {{ petname }}!</h1>
 <div id="game-container">
 
-  <h1>Tug-War, Belly-Rubs, Feed-Treats Dog Version of Rock Paper Scissors Game</h1>
+  <h1>Dog Version of Rock = Tug-War, Paper = Belly-Rubs, Scissors = Feed-Treats Game</h1>
 
    <!-- Display user's choice -->
   <div id="user-choice">
@@ -57,29 +57,32 @@
 
   <!-- Display game result -->
   <div id="result-message">
-    <p class="result-message"> 
-    {% if game_result == "It's a tie!" %}
+  
+      {% if game_result == "You win!" %}
+      {{ game_result }} Give {{ petname }} the reward!
+      <!-- Add content for when the user wins -->    
+      {% elif game_result == "It's a tie!" %}
       {{ game_result }}
-      <form method="POST" action="/dog_games">
-        <button id="play-again-button" type="submit" name="play_again" value="true">Play Again</button>
-      </form>
-      {% elif game_result == "You win!" %}
-        {{ game_result }} Give {{ petname }} the reward!
-      <!-- Add content for when the user wins -->
-    {% else %}
-    {{ game_result }} Not getting a reward this time {{ petname }}!
+      
+      {% else %}
+      {{ game_result }} Not getting a reward this time {{ petname }}!
       <!-- Add content for when the computer wins -->
       {% endif %}
-    </p>
-  </div>
-</div>
-
+    
 <form method="POST" action="/dog_games">
-  <button id="play-button" class="square-button" type="submit" name="play_game">
+  <button id="play-button" class="square-button" type="submit" value="true" name="play_game">
     Paw Here Play
-    <a href="#"><img src="https://cdn.vectorstock.com/i/preview-1x/91/75/dog-paw-on-red-heart-conceptual-image-vector-23639175.jpg" style="width: 200px; height: 200px;"></a>
+    <!--a href="#"><img src="https://cdn.vectorstock.com/i/preview-1x/91/75/dog-paw-on-red-heart-conceptual-image-vector-23639175.jpg" style="width: 200px; height: 200px;"></a-->
   </button>
 </form>
+  <form method="POST" action="/dog_games">
+    <button id="play-again-button" class="square-button" type="submit" > Play Again
+      <!--a href="#"><img src="https://cdn.vectorstock.com/i/preview-1x/91/75/dog-paw-on-red-heart-conceptual-image-vector-23639175.jpg" style="width: 200px; height: 200px;"></a-->
+</button>
+  </form>
+ </p> 
+    
+  </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Dog game JS starts here -->

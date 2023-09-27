@@ -66,9 +66,15 @@ async function initMap() {
   // The map, centered at NY my fav dog park coordinates         lat: 40.785091,lng: -73.968285,
   const mapCenter = { lat: 40.785091,lng: -73.968285 };
   map = new Map(document.getElementById("map"), {
-    zoom: 15,
+    zoom: 9,
     center: mapCenter,
     mapId: "Dogfriendly_Park_MAP_ID",
+  });
+  // mapCenter.addListener('click', () => {
+  //   alert('Hi!');
+  // });
+  const mapInfo = new google.maps.InfoWindow({
+    content: '<h1>HI from NYC!</h1>',
   });
 
   // Create markers for each location

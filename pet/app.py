@@ -43,6 +43,7 @@ def register():
 @app.route('/dog_parks', methods=['POST', 'GET'])
 def dog_parks():
     google_maps_api_key = os.environ.get('GOOGLEMAPS_KEY')
+    
     zipCode = os.environ.get('zipCode')
     w_api = os.environ.get('WAPI_KEY')
     
@@ -109,7 +110,10 @@ def dog_movies():
 
 @app.route('/dog_games', methods=['GET', 'POST'])
 def dog_games():
-    petname = None  # Default petname
+    user_id = session.get('user_id')
+    if user_id:
+        user = crud.get_user_by_id(user_id)
+        petname = user.petname  # Default petname
     choices = [
         {
             "name": "Tug-War",
@@ -127,8 +131,8 @@ def dog_games():
 
     if request.method == 'POST':
         user_id = session.get('user_id')
+        # Uncomment the following lines to retrieve the user's petname
         if user_id:
-            # If the user is logged in, retrieve their data (e.g., petname) from your data store
             user = crud.get_user_by_id(user_id)
             petname = user.petname
 
@@ -136,13 +140,16 @@ def dog_games():
             return random.choice(choices)
 
         def determine_winner(user_choice, computer_choice):
-            if user_choice["petname"] == computer_choice["petname"]:
+            print(user_choice["name"])
+            print("**************")
+            print(computer_choice["name"])
+            if user_choice["name"] == computer_choice["name"]:
                 return "It's a tie!"
-            elif (
-                (user_choice["petname"] == "Tug-War" and computer_choice["name"] == "Feed-Treats") or
-                (user_choice["petname"] == "Belly-Rubs" and computer_choice["name"] == "Tug-War") or
-                (user_choice["petname"] == "Feed-Treats" and computer_choice["name"] == "Belly-Rubs")
-            ):
+            elif user_choice["name"] == "Tug-War" and computer_choice["name"] == "Feed-Treats":
+                return "You win!"
+            elif user_choice["name"] == "Belly-Rubs" and computer_choice["name"] == "Tug-War": 
+                return "You win!"
+            elif user_choice["name"] == "Feed-Treats" and computer_choice["name"] == "Belly-Rubs":
                 return "You win!"
             else:
                 return "Computer wins!"
