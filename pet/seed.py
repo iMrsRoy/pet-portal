@@ -1,5 +1,5 @@
 import json
-from model import db, DogMovie, connect_to_db
+from app import db, DogMovie
 
 def load_data_from_json(filename):
     with open(filename) as file:
@@ -18,11 +18,8 @@ def seed_dog_movies(data):
     db.session.commit()
 
 if __name__ == '__main__':
-    from app import app
-    connect_to_db(app)
-    
     # Specify the path to your JSON data file
-    json_data = load_data_from_json('data/dog_movies.json')
+    json_data = load_data_from_json('dog_movies.json')
     
     # Seed the DogMovie table with data from the JSON file
     seed_dog_movies(json_data)

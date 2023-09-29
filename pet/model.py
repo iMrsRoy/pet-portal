@@ -40,7 +40,7 @@ class DogMovie(db.Model):
     title = db.Column(db.String(100), nullable=False)
     movie_rating = db.Column(db.Integer, nullable=False)
     comments = db.Column(db.Text)
-    dog_park_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'), nullable=False)
+    # dog_park_id = db.Column(db.Integer, db.ForeignKey('dog_parks.id'), nullable=False)
   
 
 def connect_to_db(flask_app, db_uri="postgresql:///dogs", echo=True):

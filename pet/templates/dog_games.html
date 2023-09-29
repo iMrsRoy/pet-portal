@@ -25,11 +25,11 @@
   </section>
 </nav>
 
-<h1>Welcome, {{ petname }}!</h1>
+<h1>Welcome, {{ petname }}, to the Reward Game!</h1>
 <div id="game-container">
 
-  <h1>Dog Version of Rock = Tug-War, Paper = Belly-Rubs, Scissors = Feed-Treats Game</h1>
-
+  <h1> Will the reward be Tug-War, Belly-Rubs, or Treats?</h1>
+<p>If the computer agrees with your choice of reward you will get it! If not try again!</p>
    <!-- Display user's choice -->
   <div id="user-choice">
     
@@ -54,32 +54,32 @@
       <a href="#"><img src="https://www.bu.edu/files/2012/05/t_computationalthinking.jpg" alt="" style="width: 200px; height: 200px;"> </a>
     </button>
   </div>
-
-  <!-- Display game result -->
-  <div id="result-message">
-  
-      {% if game_result == "You win!" %}
-      {{ game_result }} Give {{ petname }} the reward!
-      <!-- Add content for when the user wins -->    
-      {% elif game_result == "It's a tie!" %}
-      {{ game_result }}
-      
-      {% else %}
-      {{ game_result }} Not getting a reward this time {{ petname }}!
-      <!-- Add content for when the computer wins -->
-      {% endif %}
-    
 <form method="POST" action="/dog_games">
   <button id="play-button" class="square-button" type="submit" value="true" name="play_game">
     Paw Here Play
     <!--a href="#"><img src="https://cdn.vectorstock.com/i/preview-1x/91/75/dog-paw-on-red-heart-conceptual-image-vector-23639175.jpg" style="width: 200px; height: 200px;"></a-->
   </button>
+  <!-- Display game result -->
+  <div id="result-message">
+  <h3>Let's see what kind of reward will you get today?</h3>
+  {% if game_result == "You win!" %}
+  {{ game_result }} Give {{ petname }} the reward!
+  <!-- Add content for when the user wins -->    
+{% elif game_result == "It's a tie!" %}
+  {{ game_result }}
+{% else %}
+  {{ game_result }} Not getting a reward this time {{ petname }}!
+  <!-- Add content for when the computer wins -->
+{% endif %}
+
+    
+
 </form>
-  <form method="POST" action="/dog_games">
+  <!--form method="POST" action="/dog_games">
     <button id="play-again-button" class="square-button" type="submit" > Play Again
-      <!--a href="#"><img src="https://cdn.vectorstock.com/i/preview-1x/91/75/dog-paw-on-red-heart-conceptual-image-vector-23639175.jpg" style="width: 200px; height: 200px;"></a-->
+      <a href="#"><img src="https://cdn.vectorstock.com/i/preview-1x/91/75/dog-paw-on-red-heart-conceptual-image-vector-23639175.jpg" style="width: 200px; height: 200px;"></a>
 </button>
-  </form>
+  </form-->
  </p> 
     
   </div>
