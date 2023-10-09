@@ -1,144 +1,180 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 /* styles.css */
-
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 body {
-    /* Set the background image URL */
-    background-image: url('https://puppylovenv.com/media/filer_public/6f/90/6f9077be-2d0f-441b-8ca5-2f592ae20788/puppy-love-logo-color.png');
-    
-    /* Background image properties */
-    background-size: cover; /* Cover the entire element */
-    background-position: center; /* Center the image */
-    
-    /* Optional: Add some styling to the body */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: rgb(6, 6, 6); /* Text color */
-    
+  /* Set the background image URL */
+  background-image: url('https://puppylovenv.com/media/filer_public/6f/90/6f9077be-2d0f-441b-8ca5-2f592ae20788/puppy-love-logo-color.png');
+  background-color: #ffffff38;
+  /* Background image properties */
+  background-size: cover; /* Cover the entire element */
+  background-position: center; /* Center the image */
+
+
+  /* Optional: Add some styling to the body */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: rgb(6, 6, 6); /* Text color */
+  
 }
 
 
 /* Define a class for the button with image */
 .login-button {
-    /*background-color: #3498db; https://www.clipartmax.com/png/middle/475-4758568_img-show-your-puppy-love-dog-print.png Button background color */
-    border: none; /* Remove button border */
-    color: #040000c1; /* Text color */
-    padding: 40px 20px; /* Padding around the text */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Show pointer cursor on hover */
-    transition: background-color 0.5s ease; /* Smooth background color transition on hover */
+  /*background-color: #3498db; https://www.clipartmax.com/png/middle/475-4758568_img-show-your-puppy-love-dog-print.png Button background color */
+  border: none; /* Remove button border */
+  color: #040000c1; /* Text color */
+  padding: 40px 20px; /* Padding around the text */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: background-color 0.5s ease; /* Smooth background color transition on hover */
 
-    /* Set the background image */
-    background-image: url('https://t4.ftcdn.net/jpg/01/24/44/09/360_F_124440948_44PLupxoTzvsvQjlprrGEivaxziORzIL.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover; /* Adjust the image size to cover the button */
+  /* Set the background image */
+  background-image: url('https://t4.ftcdn.net/jpg/01/24/44/09/360_F_124440948_44PLupxoTzvsvQjlprrGEivaxziORzIL.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; /* Adjust the image size to cover the button */
 }
 
 
 /* 
- * Google Map style
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
+* Google Map style
+* Always set the map height explicitly to define the size of the div element
+* that contains the map. 
+*/
 
-    #map {
-      height: 100%;
-    }
-  
-    /* 
-    * Optional: Makes the sample page fill the window. 
-    */
-    html,
-    body {
-      height: 90%;
-      margin: 10;
-      padding: 50;
-    }
+  #map {
+    height: 100%;
+  }
+
+  /* 
+  * Optional: Makes the sample page fill the window. 
+  */
+  html,
+  body {
+    height: 90%;
+    margin: 10;
+    padding: 50;
+  }
 
 /* Define a class for the button with image */
-.nav {
-  /* Set the custom marker icon as the background image */
-  background-image: url('/static/paw.jpeg'); 
-  background-repeat: repeat;
-  background-position: center;
-  background-color: rgba(13, 237, 65, 0.943); 
-  width: 40px; 
-  height: 40px; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+nav {
+/* Set the custom marker icon as the background image background-image: url('/static/paw.jpeg');width: 400px; 
+height: 40px;  */ 
+background-repeat: repeat;
+background-position: center; 
+
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #ffffffab; /* Set the background color */
+padding: 20px; /* Add some padding */
 }
+/* Style for the navigation bar */
+
+.nav-button {
+  /* Style your navigation buttons here */
+  margin-right: 20px; /* Add spacing between buttons */
+  color: #000000;
+}
+
+/* Add custom CSS for the navigation bar */
+.navbar {
+  background-color: white; /* Set the background color to white */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.navbar-brand {
+  color: #DC3545 !important; /* Set the brand (button) text color to red */
+  font-weight: bold; /* Make the text bold */
+  margin-right: 20px; /* Add some right margin to each button for spacing */
+}
+
+.navbar-brand:hover {
+  color: #DC3545 !important; /* Change the brand text color on hover */
+  text-decoration: none; /* Remove underline on hover */
+}
+
+/* Style the navigation links (anchor tags) */
+.navbar a {
+  color: #DC3545 !important; /* Set the link text color to red */
+  text-decoration: none; /* Remove underline from links */
+  transition: color 0.2s ease; /* Smooth color transition on hover */
+}
+
+.navbar a:hover {
+  color: #ffffff !important; /* Change link text color on hover */
+}
+
 
 
 /* Style for the movie container */
 .movie-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
 }
 
 /* Style for each movie card */
 .movie-card {
-  width: 300px;
-  margin: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+width: 300px;
+margin: 20px;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .movie-card img {
-  max-width: 100%;
-  height: auto;
+max-width: 100%;
+height: auto;
 }
 
 .movie-card h2 {
-  margin-top: 10px;
-  font-size: 1.2rem;
+margin-top: 10px;
+font-size: 1.2rem;
 }
 
 .movie-card p {
-  margin-top: 5px;
+margin-top: 5px;
 }
 
 /* Add this CSS to your stylesheet park page */
 .weather {
-  background-color: white;
-  width: 500px;
-  margin: 10px; /* Adjust the margin for spacing */
+background-color: white;
+width: 500px;
+margin: 10px; /* Adjust the margin for spacing */
 }
 .image-button {
-  /* Set the custom marker icon as the background image */
-  background-image: url('/static/paw.jpeg'); 
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover; 
-  width: 40px; 
-  height: 40px; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Set the custom marker icon as the background image */
+background-image: url('/static/paw.jpeg'); 
+background-repeat: no-repeat;
+background-position: center center;
+background-size: cover; 
+width: 40px; 
+height: 40px; 
+display: flex;
+justify-content: center;
+align-items: center;
 }
 /* .square-button {
-  width: 200px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+width: 200px;
+height: 200px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
 } */
 
 .selected {
-  border: 2px solid rgb(255, 0, 0); 
+border: 2px solid rgb(255, 0, 0); 
 }
 .choice-container {
-  width: 200px;
-  height: 200px;
-  margin: 100px; /* Adjust the margin for spacing */
-}
+width: 200px;
+height: 200px;
+margin: 100px; /* Adjust the margin for spacing */
+}"
