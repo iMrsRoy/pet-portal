@@ -24,7 +24,7 @@
     </button>
   </section>
 </nav>
-
+<div class="column">
 <h1>Welcome, {{ petname }} to the Reward Game! 🐾</h1>
 <div id="game-container">
 
@@ -68,7 +68,7 @@
 {% elif game_result == "It's a tie!" %}
   {{ game_result }}
 {% else %}
-  {{ game_result }} Not getting a reward this time {{ petname }}!
+  Treat time {{ petname }}!
   <!-- Add content for when the computer wins -->
 {% endif %}
 
@@ -163,7 +163,7 @@
 
   document.getElementById("play-button").addEventListener("click", playGame);
 </script>
-
+</div>
 {% endblock body %}
 </body>
 </html>

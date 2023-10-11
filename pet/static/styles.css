@@ -1,9 +1,26 @@
 /* styles.css */
+/* Responsive layout - makes the columns stack on top of each other */
+h1{
+  font-size: xx-large;
+  color: red;
+}
+
+.column {
+        float: center;
+        width: 100%;
+    padding: 15px;
+    content: "";
+    display: table;
+    clear: both;
+    background-color: #ffffff;
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #ffffffab;
 }
 body {
   /* Set the background image URL */
@@ -62,25 +79,34 @@ body {
   }
 
 /* Define a class for the button with image */
+
+
+
 nav {
 /* Set the custom marker icon as the background image background-image: url('/static/paw.jpeg');width: 400px; 
-height: 40px;  */ 
+height: 40px;float: left;  */ 
+
+display: block;
+color: hsl(0, 0%, 100%);
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
 background-repeat: repeat;
 background-position: center; 
 
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: #ffffffab; /* Set the background color */
+background-color: #ff0404ab; /* Set the background color */
 padding: 20px; /* Add some padding */
 }
 /* Style for the navigation bar */
 
 .nav-button {
-  /* Style your navigation buttons here */
-  margin-right: 20px; /* Add spacing between buttons */
+  /* Style your navigation buttons here Add spacing between buttons  */  
   color: #000000;
-}
+  margin-right: 40px;
+}*/
 
 /* Add custom CSS for the navigation bar */
 .navbar {
@@ -107,14 +133,18 @@ padding: 20px; /* Add some padding */
 }
 
 .navbar a:hover {
-  color: #ffffff !important; /* Change link text color on hover */
-}
+   background-color: rgb(255, 255, 255)!important; 
+   /*color: #ffffff Change link text color on hover   .nav a:hover{*/
+  color: red;
+  font-size: large;
+  }
+
 
 
 
 /* Style for the movie container */
 .movie-container {
-display: flex;
+display: center;
 flex-wrap: wrap;
 justify-content: space-around;
 }

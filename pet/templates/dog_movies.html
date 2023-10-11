@@ -26,9 +26,10 @@
 </nav>
 
 <body>
+  <div class="column">
     <h1>Welcome, {{ petname }}!</h1>
 
-    <h1>Dog Movies</h1>
+    <h2>Lets Watch Movies Together</h1>
     
     <ul id="movie-list">
         {% for movie in movies %}
@@ -45,64 +46,65 @@
     <ul>
       <li>
         <h2>Puppy Love</h2>
-        <img src="https://cdn.technadu.com/wp-content/uploads/2023/08/Puppy-Love-696x392.jpg" alt="Puppy Love poster">
+        <img src="https://cdn.technadu.com/wp-content/uploads/2023/08/Puppy-Love-696x392.jpg" alt="Puppy Love poster" style="width: 200px; height: 200px">
         <p>Rating: 5</p>
         <p>Comments: Journey of 2 pawrents falling in love, its a new age movie a MUST see.</p>
       </li>
       <li>
         <h2>Marley & Me</h2>
-        <img src="https://www.themoviedb.org/t/p/w500/vMNqPN7EdRjqHnccCqtEkC61r3y.jpg" alt="Marley & Me poster">
+        <img src="https://www.themoviedb.org/t/p/w500/vMNqPN7EdRjqHnccCqtEkC61r3y.jpg" alt="Marley & Me poster" style="width: 200px; height: 200px">
         <p>Rating: 4</p>
         <p>Comments: A funny and touching story about a mischievous dog.</p>
       </li>
       <li>
         <h2>A Dog's Purpose</h2>
-        <img src="https://img.clickviewapp.com/v2/thumbnails/odxvnn?size=Medium" alt="A Dog's Purpose poster">
+        <img src="https://img.clickviewapp.com/v2/thumbnails/odxvnn?size=Medium" alt="A Dog's Purpose poster" style="width: 200px; height: 200px">
         <p>Rating: 4</p>
         <p>Comments: Heartwarming film about the journey of a dog.</p>
       </li>
       <li>
         <h2>The Secret Life of Pets</h2>
-        <img src="https://storage.googleapis.com/proudcity/santaanaca/uploads/2022/05/The-Secret-Life-of-Pets-2-Movie.jpg" alt="The Secret Life of Pets poster">
+        <img src="https://storage.googleapis.com/proudcity/santaanaca/uploads/2022/05/The-Secret-Life-of-Pets-2-Movie.jpg" alt="The Secret Life of Pets poster" style="width: 200px; height: 200px">
         <p>Rating: 3</p>
         <p>Comments: What do pets do when their owners are away?</p>
       </li>
       <li>
         <h2>Beethoven</h2>
-        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2081cd66-d0ec-4645-8cb6-526af66db7f1/dfcknq7-3f486266-60b6-4fe9-8aad-e6fb206b68aa.png/v1/fill/w_1191,h_671,q_70,strp/beethoven__1992____30_th_anniversary_by_vitsmirnov_dfcknq7-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIxIiwicGF0aCI6IlwvZlwvMjA4MWNkNjYtZDBlYy00NjQ1LThjYjYtNTI2YWY2NmRiN2YxXC9kZmNrbnE3LTNmNDg2MjY2LTYwYjYtNGZlOS04YWFkLWU2ZmIyMDZiNjhhYS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.g7JTbUdXSI2s0bhI21rl0f-IZKsLEN8BBDwfDtgfELs" alt="Beethoven poster">
+        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2081cd66-d0ec-4645-8cb6-526af66db7f1/dfcknq7-3f486266-60b6-4fe9-8aad-e6fb206b68aa.png/v1/fill/w_1191,h_671,q_70,strp/beethoven__1992____30_th_anniversary_by_vitsmirnov_dfcknq7-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIxIiwicGF0aCI6IlwvZlwvMjA4MWNkNjYtZDBlYy00NjQ1LThjYjYtNTI2YWY2NmRiN2YxXC9kZmNrbnE3LTNmNDg2MjY2LTYwYjYtNGZlOS04YWFkLWU2ZmIyMDZiNjhhYS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.g7JTbUdXSI2s0bhI21rl0f-IZKsLEN8BBDwfDtgfELs" alt="Beethoven poster" style="width: 200px; height: 200px">
         <p>Rating: 4</p>
         <p>Comments: A family comedy about a giant St. Bernard.</p>
       </li>
       <li>
         <h2>101 Dalmatians</h2>
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0DC8ADB638E0D53B2C7C936D605566A24377DF8E3D82775A9B2BF78194ED1BE8/scale?width=1200&aspectRatio=1.78&format=jpeg" alt="101 Dalmatians poster">
+        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0DC8ADB638E0D53B2C7C936D605566A24377DF8E3D82775A9B2BF78194ED1BE8/scale?width=1200&aspectRatio=1.78&format=jpeg" alt="101 Dalmatians poster" style="width: 200px; height: 200px">
         <p>Rating: 3</p>
         <p>Comments: A classic Disney animated film about a family of dalmatians who are kidnapped by Cruella de Vil.</p>
       </li>
       <li>
         <h2>Lady and the Tramp</h2>
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/49431037639D1AAD54CB221472A227C905C71F72CD1035E3968663248BE7DD10/scale?width=1200&aspectRatio=1.78&format=jpeg" alt="Lady and the Tramp poster">
+        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/49431037639D1AAD54CB221472A227C905C71F72CD1035E3968663248BE7DD10/scale?width=1200&aspectRatio=1.78&format=jpeg" alt="Lady and the Tramp poster" style="width: 200px; height: 200px">
         <p>Rating: 4</p>
         <p>Comments: A classic Disney animated film about a cocker spaniel and a stray dog who fall in love.</p>
       </li>
       <li>
         <h2>Bolt</h2>
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/340990/header.jpg?t=1657070196" alt="Bolt poster">
+        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/340990/header.jpg?t=1657070196" alt="Bolt poster", style="width: 200px; height: 200px" ;>
         <p>Rating: 3</p>
         <p>Comments: A Disney animated film about a dog who believes he has superpowers.</p>
       </li>
       <li>
         <h2>Show Dogs</h2>
-        <img src="https://m.media-amazon.com/images/M/MV5BMjM4ODQyMjAyMl5BMl5BanBnXkFtZTgwNzI2OTMxNTM@._V1_.jpg">
+        <img src="https://m.media-amazon.com/images/M/MV5BMjM4ODQyMjAyMl5BMl5BanBnXkFtZTgwNzI2OTMxNTM@._V1_.jpg" style="width: 200px; height: 200px">
         <p>Rating: 4</p>
-        <p>Comments: A police dog must go undercover with an FBI agent as a prim and proper pet at a dog show to save a baby panda from an illegal sale</p>
+        <p>Comments: A Dog FBI agent enters the dog show to save a baby panda from an illegal sale</p>
       </li>
       <li>
-        <h2>Entertainment</h2>
-        <img src="https://cdn.bollywoodmdb.com/fit-in/movies/largethumb/450x450/2013/its-entertainment/its-entertainment-poster-7.jpg">
+        <h2>Entertainment</h2>       
+        <img src="https://cdn.bollywoodmdb.com/fit-in/movies/largethumb/450x450/2013/its-entertainment/its-entertainment-poster-7.jpg" style="width: 200px; height: 200px";>
         <p>Rating: 4</p>
         <p>Comments: "A bollywood film about a man and a dogs how he wants to live like a dog."</p>
       </li>
+    </div>
 </body>
 
 
