@@ -1,5 +1,7 @@
-# pet-portal
-hackbright fullstack project
+# [Pet-Portal click here to see the demo!](https://www.youtube.com/watch?v=3F-2cEAJGi4)
+•	Built a full-stack app using Google Weather API to show pet owners when it’s safe to walk their pets, also shows park near by where they can take pet for walk as well.
+
+Hackbright fullstack project
 
 The MVP of my project, which is a pet portal app with user registration, dog_parks, dog_movies, dog_games.
 
